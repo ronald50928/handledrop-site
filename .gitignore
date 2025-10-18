@@ -1,0 +1,16 @@
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# Terraform local state and caches
+infra/.terraform/
+infra/terraform.tfstate
+infra/terraform.tfstate.backup
+infra/*.tfvars
+
+# Node/build caches if added later
+dist/
+build/
+node_modules/
+
