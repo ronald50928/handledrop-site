@@ -82,49 +82,210 @@
   // Bind audio feedback on CTAs and hover
   function bindAudio() {
     if (!window.HDAudio) return;
+    // Mute by default; sounds only on user opt-in via button
+    const audioBtn = $('.audio-toggle');
+    function setBtnState() {
+      if (!audioBtn) return;
+      const muted = window.HDAudio.muted;
+      audioBtn.setAttribute('aria-pressed', String(!muted));
+      audioBtn.textContent = muted ? 'Hear the sound of our network' : 'Silence the network';
+    }
+    if (audioBtn) {
+      setBtnState();
+      audioBtn.addEventListener('click', () => {
+        if (window.HDAudio.muted) {
+          window.HDAudio.setMuted(false);
+          // Start ambient pad to showcase the network sound
+          window.HDAudio.toggleAmbient();
+          // Give a subtle confirmation
+          window.HDAudio.playTick();
+        } else {
+          // Stop ambient if running, then mute
+          window.HDAudio.toggleAmbient();
+          window.HDAudio.setMuted(true);
+        }
+        setBtnState();
+      });
+    }
+    // For CTAs and nav: only play if unmuted
     $$('.cta-start').forEach(btn => {
-      btn.addEventListener('click', () => window.HDAudio.playWhoosh());
-      btn.addEventListener('mouseenter', () => window.HDAudio.playTick());
-      btn.addEventListener('focus', () => window.HDAudio.playTick());
+      btn.addEventListener('click', () => { if (!window.HDAudio.muted) window.HDAudio.playWhoosh(); });
+      btn.addEventListener('mouseenter', () => { if (!window.HDAudio.muted) window.HDAudio.playTick(); });
+      btn.addEventListener('focus', () => { if (!window.HDAudio.muted) window.HDAudio.playTick(); });
     });
     $$('#nav-list a').forEach(a => {
-      a.addEventListener('mouseenter', () => window.HDAudio.playTick());
-      a.addEventListener('focus', () => window.HDAudio.playTick());
+      a.addEventListener('mouseenter', () => { if (!window.HDAudio.muted) window.HDAudio.playTick(); });
+      a.addEventListener('focus', () => { if (!window.HDAudio.muted) window.HDAudio.playTick(); });
     });
   }
   document.addEventListener('DOMContentLoaded', bindAudio);
 
-  // Canvas starfield (reduced-motion aware)
+  // Canvas neural network background (reduced-motion aware)
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const canvas = document.getElementById('bg-canvas');
   if (canvas && !prefersReduced) {
     const ctx = canvas.getContext('2d');
-    let w, h, stars;
-    const STAR_COUNT = 200;
-    function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
-    window.addEventListener('resize', resize);
-    resize();
-    function makeStars(){
-      stars = Array.from({length: STAR_COUNT}, () => ({
-        x: (rand()*2 - 1) * w, y: (rand()*2 - 1) * h, z: rand()*1 + 0.2
-      }));
+    let w = 0, h = 0, dpr = Math.min(2, window.devicePixelRatio || 1);
+    let nodes = [], edges = [], pulses = [];
+
+    function resize() {
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      const cssW = window.innerWidth;
+      const cssH = window.innerHeight;
+      w = canvas.width = Math.floor(cssW * dpr);
+      h = canvas.height = Math.floor(cssH * dpr);
+      // CSS size remains full-bleed
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      initGraph();
     }
-    makeStars();
-    function step(){
-      ctx.clearRect(0,0,w,h);
-      ctx.fillStyle = '#06080d';
-      ctx.fillRect(0,0,w,h);
-      for (const s of stars){
-        s.x += s.z * 0.3; s.y += s.z * 0.3;
-        if (s.x > w/2 || s.y > h/2) { s.x = -w/2; s.y = -h/2; s.z = rand()*1 + 0.2; }
-        const sx = s.x + w/2; const sy = s.y + h/2;
-        const size = s.z * 1.8;
-        ctx.fillStyle = 'rgba(14,165,233,0.9)';
-        ctx.fillRect(sx, sy, size, size);
+    window.addEventListener('resize', () => { clearTimeout(resize._t); resize._t = setTimeout(resize, 150); });
+
+    // Graph construction
+    function initGraph() {
+      nodes = []; edges = []; pulses = [];
+      const area = (w / dpr) * (h / dpr);
+      const baseDensity = 0.00010; // nodes per pixel
+      const count = Math.round(area * baseDensity);
+      const N = Math.max(48, Math.min(120, count));
+      for (let i = 0; i < N; i++) {
+        nodes.push({ x: rand() * w, y: rand() * h, r: (0.8 + rand()*0.8) * dpr });
       }
+      // Connect each node to its k nearest within a radius
+      const k = 3; // desired degree
+      const maxDist = Math.min(w, h) * 0.18;
+      const seen = new Set();
+      for (let i = 0; i < N; i++) {
+        const dists = [];
+        for (let j = 0; j < N; j++) {
+          if (i === j) continue;
+          const dx = nodes[j].x - nodes[i].x;
+          const dy = nodes[j].y - nodes[i].y;
+          const dist = Math.hypot(dx, dy);
+          if (dist <= maxDist) dists.push({ j, dist, dx, dy });
+        }
+        dists.sort((a, b) => a.dist - b.dist);
+        for (let n = 0; n < Math.min(k, dists.length); n++) {
+          const j = dists[n].j;
+          const a = Math.min(i, j), b = Math.max(i, j);
+          const key = (a << 16) | b; // simple pair key (N <= 120)
+          if (seen.has(key)) continue;
+          seen.add(key);
+          const dx = nodes[b].x - nodes[a].x;
+          const dy = nodes[b].y - nodes[a].y;
+          const len = Math.hypot(dx, dy) || 1;
+          const ux = dx / len, uy = dy / len;
+          edges.push({ a, b, len, ux, uy });
+        }
+      }
+      // Seed some pulses
+      const targetPulses = Math.round(edges.length * 0.6);
+      for (let i = 0; i < targetPulses; i++) spawnPulse();
+    }
+
+    function spawnPulse() {
+      if (edges.length === 0) return;
+      const e = edges[(Math.random() * edges.length) | 0];
+      const dir = rand() > 0.5 ? 1 : -1; // travel either way
+      const huePick = rand();
+      const color = huePick < 0.6 ? 'rgba(14,165,233,0.9)' : 'rgba(244,63,94,0.95)'; // brand or accent
+      // speed tuned by edge length and DPR
+      const base = 0.00035 + rand()*0.00055; // progress per ms
+      pulses.push({ e, t: rand()*0.95, dir, spd: base, color, trail: 0.06 + rand()*0.12 });
+    }
+
+    let last = performance.now();
+    function step(now) {
+      const dt = Math.min(50, now - last); // clamp to avoid big jumps
+      last = now;
+
+      // Background
+      ctx.clearRect(0, 0, w, h);
+      // Subtle radial vignette
+      const bg = ctx.createRadialGradient(w*0.5, h*0.4, Math.min(w, h)*0.05, w*0.5, h*0.5, Math.max(w, h)*0.7);
+      bg.addColorStop(0, '#0b0f14');
+      bg.addColorStop(1, '#06080d');
+      ctx.fillStyle = bg; ctx.fillRect(0,0,w,h);
+
+      // Draw connections
+      ctx.save();
+      ctx.globalCompositeOperation = 'lighter';
+      for (let i = 0; i < edges.length; i++) {
+        const { a, b, len } = edges[i];
+        const n1 = nodes[a], n2 = nodes[b];
+        const alpha = Math.max(0.06, 0.18 - (len / Math.max(w,h)) * 0.18);
+        ctx.strokeStyle = `rgba(148,163,184,${alpha})`;
+        ctx.lineWidth = 1 * dpr;
+        ctx.beginPath();
+        ctx.moveTo(n1.x, n1.y);
+        ctx.lineTo(n2.x, n2.y);
+        ctx.stroke();
+      }
+
+      // Draw nodes
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        const r = n.r + (Math.sin((now*0.002) + i)*0.2*dpr);
+        const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r*3);
+        g.addColorStop(0, 'rgba(14,165,233,0.9)');
+        g.addColorStop(1, 'rgba(14,165,233,0.0)');
+        ctx.fillStyle = g;
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r*3, 0, Math.PI*2);
+        ctx.fill();
+        ctx.fillStyle = 'rgba(226,240,255,0.9)';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI*2);
+        ctx.fill();
+      }
+
+      // Update and draw pulses
+      const nextPulses = [];
+      for (let i = 0; i < pulses.length; i++) {
+        const p = pulses[i];
+        p.t += p.spd * dt * (p.dir);
+        if (p.t < 0 || p.t > 1) {
+          // recycle
+          if (rand() < 0.85) spawnPulse();
+          continue;
+        }
+        nextPulses.push(p);
+        const { e } = p;
+        const n1 = nodes[e.a], n2 = nodes[e.b];
+        const x = n1.x + e.ux * (e.len * p.t);
+        const y = n1.y + e.uy * (e.len * p.t);
+        // Trail (comet tail)
+        const tail = e.len * p.trail;
+        const tx = x - e.ux * tail * p.dir;
+        const ty = y - e.uy * tail * p.dir;
+        ctx.strokeStyle = p.color;
+        ctx.lineWidth = 1.5 * dpr;
+        ctx.beginPath();
+        ctx.moveTo(tx, ty);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        // Head glow
+        const rg = ctx.createRadialGradient(x, y, 0, x, y, 6 * dpr);
+        rg.addColorStop(0, p.color);
+        rg.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = rg;
+        ctx.beginPath();
+        ctx.arc(x, y, 6 * dpr, 0, Math.PI*2);
+        ctx.fill();
+      }
+      pulses = nextPulses;
+      // Keep a steady number of pulses
+      if (pulses.length < Math.round(edges.length * 0.6)) {
+        for (let i = pulses.length; i < Math.round(edges.length * 0.6); i++) spawnPulse();
+      } else if (pulses.length > Math.round(edges.length * 0.9)) {
+        pulses.length = Math.round(edges.length * 0.9);
+      }
+
+      ctx.restore();
       requestAnimationFrame(step);
     }
+
+    resize();
     requestAnimationFrame(step);
   }
 })();
-

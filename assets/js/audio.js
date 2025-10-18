@@ -4,12 +4,18 @@
     ctx: null,
     master: null,
     ambient: { on: false, g: null, oscA: null, oscB: null, lpf: null },
-    muted: false,
+    muted: true,
     inited: false,
   };
 
   function loadMute() {
-    try { state.muted = localStorage.getItem('hd_audio_muted') === '1'; } catch {}
+    try {
+      const v = localStorage.getItem('hd_audio_muted');
+      // Default to muted when no prior choice exists
+      state.muted = (v === null) ? true : (v === '1');
+    } catch {
+      state.muted = true;
+    }
   }
   function saveMute() {
     try { localStorage.setItem('hd_audio_muted', state.muted ? '1' : '0'); } catch {}
@@ -104,4 +110,3 @@
 
   window.HDAudio = { playTick, playWhoosh, toggleAmbient, setMuted, get muted(){ return state.muted; } };
 })();
-
