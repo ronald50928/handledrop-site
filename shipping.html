@@ -62,9 +62,11 @@
         <div class="wrap">
           <div class="finder-box">
             <h2>Find Your Nearest Drop-Off Location</h2>
-            <form class="location-search" action="#" method="get">
-              <input type="text" placeholder="Enter your ZIP code" aria-label="ZIP code" class="search-input" id="zip-input" />
-              <button type="submit" class="btn btn-primary">Find Locations</button>
+            <!-- TODO: Enable when app launches -->
+            <form class="location-search" action="#" method="get" style="opacity: 0.6; pointer-events: none; position: relative;">
+              <input type="text" placeholder="Enter your ZIP code" aria-label="ZIP code" class="search-input" id="zip-input" disabled />
+              <button type="submit" class="btn btn-primary" disabled>Find Locations</button>
+              <span class="demo-badge" style="position: absolute; top: -10px; right: -10px;">COMING SOON</span>
             </form>
             
             <div class="location-results" id="location-results" style="display:none;">
@@ -416,9 +418,9 @@
       <!-- CTA -->
       <section class="section cta-section">
         <div class="wrap center">
-          <h2>Ready to Start Trading?</h2>
-          <p class="subhead">Ship from anywhere, anytime. It's that easy.</p>
-          <a class="btn btn-primary btn-large" href="/#signup">Get Started Free</a>
+          <h2>Coming Soon</h2>
+          <p class="subhead">We're building the future of peer-to-peer trading</p>
+          <span class="btn btn-primary btn-large" style="opacity: 0.6; pointer-events: none;">App Launching Soon</span>
         </div>
       </section>
     </main>
