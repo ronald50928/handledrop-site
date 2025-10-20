@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How it works — HandleDrop</title>
+    <meta name="description" content="List & value, match & agree, ship privately, verify & rate. HandleDrop is a privacy‑first value exchange." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+    <header class="site-header" role="banner">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="HandleDrop home">
+          <img src="/assets/img/handledrop-logo.svg" alt="HandleDrop logo" width="140" height="32" />
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
+          <ul id="nav-list" class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li><a aria-current="page" href="/how-it-works.html">How it works</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <span class="pill beta-pill" aria-label="Private Beta">Private Beta</span>
+          <a class="btn btn-primary cta-start" href="/pricing.html">See Pricing</a>
+          <button class="btn btn-secondary audio-toggle" type="button" aria-pressed="false">Hear the sound of our network</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="site-main" tabindex="-1">
+      <section class="section">
+        <div class="wrap">
+          <h1 class="display">Trade in four simple steps</h1>
+          <div class="grid four">
+            <div class="card">
+              <h3>1) List & Value</h3>
+              <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="List"><circle cx="24" cy="24" r="22" fill="var(--brand)"/><path d="M15 16h18M15 24h18M15 32h12" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
+              <p>List your item with photos and set a value band. Bands keep things simple and reduce haggling.</p>
+            </div>
+            <div class="card">
+              <h3>2) Match & Agree</h3>
+              <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="Match"><circle cx="24" cy="24" r="22" fill="var(--accent)"/><path d="M16 28l7 7 13-13" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+              <p>Matches show candidate trades. Both parties approve — consent gates ensure no one ships before agreement.</p>
+            </div>
+            <div class="card">
+              <h3>3) Ship Privately</h3>
+              <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="Ship"><circle cx="24" cy="24" r="22" fill="var(--brand)"/><path d="M10 30h16l4-8h8l-4 8h-8" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+              <p>Masked addresses, locker options, and prepaid labels for Premium. DIY labels on Free.</p>
+            </div>
+            <div class="card">
+              <h3>4) Verify & Rate</h3>
+              <svg width="48" height="48" viewBox="0 0 48 48" role="img" aria-label="Verify"><circle cx="24" cy="24" r="22" fill="var(--accent)"/><path d="M18 24l4 4 8-10" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+              <p>On delivery, both verify condition and leave ratings. Trust builds over time.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section callouts">
+        <div class="wrap grid two">
+          <div class="card">
+            <h2>Security callout</h2>
+            <ul>
+              <li>Temporal address tokens & masking</li>
+              <li>Consent gates before shipping</li>
+              <li>Optional in‑store ID verification</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h2>Roadmap</h2>
+            <p>International: Phase‑2 Envios integration (Q3 2025).</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="beta" class="section cta-strip">
+        <div class="wrap center">
+          <h2>Private Beta Underway</h2>
+          <p class="subhead" style="margin:.25rem 0 1rem">Public sign‑up isn’t open yet, but you can explore what’s coming.</p>
+          <a class="btn btn-primary cta-start" href="/">Back to Home</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap grid four">
+        <div>
+          <strong>HandleDrop</strong>
+          <p>Privacy, consent, and trust for real‑world trades.</p>
+        </div>
+        <div>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a aria-current="page" href="/how-it-works.html">How it works</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <div>
+          <a class="btn btn-secondary cta-start" href="/pricing.html">See Pricing</a>
+        </div>
+      </div>
+      <p class="tiny center">© <span id="year"></span> HandleDrop</p>
+    </footer>
+
+    <script src="/assets/js/audio.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+  </html>

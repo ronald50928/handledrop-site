@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HandleDrop — Swap anything by handle</title>
+    <meta name="description" content="HandleDrop: Swap anything by handle. Private Beta now open to a select group of testers. A privacy‑first value exchange with consent gates, ratings, and locker‑friendly shipping." />
+    <meta name="theme-color" content="#0B0F14" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HandleDrop — Swap anything by handle" />
+    <meta property="og:description" content="A privacy‑first value exchange. Propose a trade, agree on value, ship via lockers or in‑store — done." />
+    <meta property="og:url" content="https://handledrop.net/" />
+    <meta property="og:image" content="/assets/img/og-cover.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HandleDrop — Swap anything by handle" />
+    <meta name="twitter:description" content="A privacy‑first value exchange. Propose a trade, agree on value, ship via lockers or in‑store — done." />
+    <meta name="twitter:image" content="/assets/img/og-cover.png" />
+
+    <link rel="canonical" href="https://handledrop.net/" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "HandleDrop",
+        "url": "https://handledrop.net/",
+        "logo": "https://handledrop.net/assets/img/handledrop-logo.svg"
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+    <header class="site-header" role="banner">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="HandleDrop home">
+          <img src="/assets/img/handledrop-logo.svg" alt="HandleDrop logo" width="140" height="32" />
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
+          <ul id="nav-list" class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/how-it-works.html">How it works</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <span class="pill beta-pill" aria-label="Private Beta">Private Beta</span>
+          <a class="btn btn-primary cta-start" href="/how-it-works.html">Explore How It Works</a>
+          <button class="btn btn-secondary audio-toggle" type="button" aria-pressed="false">Hear the sound of our network</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="site-main" tabindex="-1">
+      <section class="hero section">
+        <div class="wrap grid two">
+          <div>
+            <h1 class="display">Swap anything by handle. No cash. No addresses.</h1>
+            <p class="subhead">A privacy‑first value exchange. Propose a trade, agree on value, ship via lockers or in‑store — done. Now in Private Beta.</p>
+            <p class="tiny" style="margin-top:.25rem;color:var(--muted)">We’re onboarding a select group of beta testers to ensure the best experience for launch.</p>
+            <div class="actions">
+              <a class="btn btn-primary cta-start" href="/how-it-works.html">Explore How It Works</a>
+              <a class="btn btn-secondary" href="/pricing.html">See Pricing</a>
+            </div>
+            <p class="legal">HandleDrop never moves money between users. Trades are goods‑for‑goods only.</p>
+          </div>
+          <div class="cards-stack">
+            <div class="card badge">Privacy: Address Masking</div>
+            <div class="card badge">Consent: Both Approve</div>
+            <div class="card badge">Ship: Locker‑Friendly</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section how-preview">
+        <div class="wrap">
+          <h2>How it works</h2>
+          <div class="grid three">
+            <div class="card">
+              <h3>1. Propose</h3>
+              <p>List your item and propose a value band.</p>
+            </div>
+            <div class="card">
+              <h3>2. Approve</h3>
+              <p>Both sides agree — consent gates unlock shipping.</p>
+            </div>
+            <div class="card">
+              <h3>3. Drop & Track</h3>
+              <p>Mask addresses, use lockers, track until verified.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stats">
+        <div class="wrap">
+          <h2>Value Measurer</h2>
+          <div class="grid three stat-cards">
+            <div class="card stat">
+              <div class="stat-label">Highest trade today</div>
+              <div id="stat-highest" class="stat-value" aria-live="polite">—</div>
+            </div>
+            <div class="card stat">
+              <div class="stat-label">Most requested item</div>
+              <div id="stat-requested" class="stat-value" aria-live="polite">—</div>
+            </div>
+            <div class="card stat">
+              <div class="stat-label">Fastest match</div>
+              <div id="stat-fastest" class="stat-value" aria-live="polite">—</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section accelerator">
+        <div class="wrap">
+          <h2>Social Media Accelerator (opt‑in)</h2>
+          <p>Review‑gated sharing to your social handles for approved listings. Opt‑in only.</p>
+        </div>
+      </section>
+
+      <section id="beta" class="section cta-strip">
+        <div class="wrap center">
+          <h2>Private Beta Underway</h2>
+          <p class="subhead" style="margin:.25rem 0 1rem">We’re building with a small group of testers. Public sign‑up isn’t open yet.</p>
+          <div class="actions" style="justify-content:center;gap:.75rem;display:flex;flex-wrap:wrap;">
+            <a class="btn btn-primary cta-start" href="/how-it-works.html">Explore How It Works</a>
+            <a class="btn btn-secondary cta-start" href="/pricing.html">See Pricing</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap grid four">
+        <div>
+          <strong>HandleDrop</strong>
+          <p>Privacy, consent, and trust for real‑world trades.</p>
+        </div>
+        <div>
+          <ul>
+            <li><a href="/how-it-works.html">How it works</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+        <div>
+          <a class="btn btn-secondary cta-start" href="/how-it-works.html">Explore How It Works</a>
+        </div>
+      </div>
+      <p class="tiny center">© <span id="year"></span> HandleDrop</p>
+    </footer>
+
+    <script src="/assets/js/audio.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+  </html>
