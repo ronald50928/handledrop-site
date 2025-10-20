@@ -178,8 +178,8 @@
           edges.push({ a, b, len, ux, uy });
         }
       }
-      // Seed some pulses
-      const targetPulses = Math.round(edges.length * 0.6);
+      // Seed some pulses (fewer for magical effect)
+      const targetPulses = Math.round(edges.length * 0.15);
       for (let i = 0; i < targetPulses; i++) spawnPulse();
     }
 
@@ -188,10 +188,12 @@
       const e = edges[(Math.random() * edges.length) | 0];
       const dir = rand() > 0.5 ? 1 : -1; // travel either way
       const huePick = rand();
-      const color = huePick < 0.6 ? 'rgba(14,165,233,0.9)' : 'rgba(244,63,94,0.95)'; // brand or accent
-      // speed tuned by edge length and DPR
-      const base = 0.00035 + rand()*0.00055; // progress per ms
-      pulses.push({ e, t: rand()*0.95, dir, spd: base, color, trail: 0.06 + rand()*0.12 });
+      const color = huePick < 0.6 ? 'rgba(14,165,233,0.95)' : 'rgba(244,63,94,0.98)'; // brand or accent
+      // Much slower speed for magical shooting star effect
+      const base = 0.00008 + rand()*0.00012; // slower progress per ms
+      // Longer trail for shooting star effect (like wishing stars)
+      const trailLength = 0.25 + rand()*0.35; // longer comet tail
+      pulses.push({ e, t: rand()*0.95, dir, spd: base, color, trail: trailLength });
     }
 
     let last = performance.now();
@@ -254,31 +256,42 @@
         const n1 = nodes[e.a], n2 = nodes[e.b];
         const x = n1.x + e.ux * (e.len * p.t);
         const y = n1.y + e.uy * (e.len * p.t);
-        // Trail (comet tail)
+        // Trail (shooting star tail with gradient fade)
         const tail = e.len * p.trail;
         const tx = x - e.ux * tail * p.dir;
         const ty = y - e.uy * tail * p.dir;
-        ctx.strokeStyle = p.color;
-        ctx.lineWidth = 1.5 * dpr;
+        
+        // Create gradient along the trail for ethereal effect
+        const trailGrad = ctx.createLinearGradient(tx, ty, x, y);
+        trailGrad.addColorStop(0, 'rgba(0,0,0,0)'); // fade out at tail
+        trailGrad.addColorStop(0.3, p.color.replace(/[\d.]+\)$/g, '0.3)')); // soft middle
+        trailGrad.addColorStop(1, p.color); // bright at head
+        ctx.strokeStyle = trailGrad;
+        ctx.lineWidth = 2.5 * dpr;
+        ctx.lineCap = 'round';
         ctx.beginPath();
         ctx.moveTo(tx, ty);
         ctx.lineTo(x, y);
         ctx.stroke();
-        // Head glow
-        const rg = ctx.createRadialGradient(x, y, 0, x, y, 6 * dpr);
+        
+        // Larger, more magical head glow (like a wishing star)
+        const rg = ctx.createRadialGradient(x, y, 0, x, y, 12 * dpr);
         rg.addColorStop(0, p.color);
+        rg.addColorStop(0.4, p.color.replace(/[\d.]+\)$/g, '0.5)'));
         rg.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = rg;
         ctx.beginPath();
-        ctx.arc(x, y, 6 * dpr, 0, Math.PI*2);
+        ctx.arc(x, y, 12 * dpr, 0, Math.PI*2);
         ctx.fill();
       }
       pulses = nextPulses;
-      // Keep a steady number of pulses
-      if (pulses.length < Math.round(edges.length * 0.6)) {
-        for (let i = pulses.length; i < Math.round(edges.length * 0.6); i++) spawnPulse();
-      } else if (pulses.length > Math.round(edges.length * 0.9)) {
-        pulses.length = Math.round(edges.length * 0.9);
+      // Keep a steady number of pulses (fewer for magical effect)
+      const minPulses = Math.round(edges.length * 0.12);
+      const maxPulses = Math.round(edges.length * 0.25);
+      if (pulses.length < minPulses) {
+        for (let i = pulses.length; i < minPulses; i++) spawnPulse();
+      } else if (pulses.length > maxPulses) {
+        pulses.length = maxPulses;
       }
 
       ctx.restore();
