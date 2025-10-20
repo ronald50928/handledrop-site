@@ -178,8 +178,8 @@
           edges.push({ a, b, len, ux, uy });
         }
       }
-      // Seed some pulses (fewer for magical effect)
-      const targetPulses = Math.round(edges.length * 0.15);
+      // Seed some pulses (even fewer - avoid many in one line)
+      const targetPulses = Math.round(edges.length * 0.08);
       for (let i = 0; i < targetPulses; i++) spawnPulse();
     }
 
@@ -189,10 +189,10 @@
       const dir = rand() > 0.5 ? 1 : -1; // travel either way
       const huePick = rand();
       const color = huePick < 0.6 ? 'rgba(14,165,233,0.95)' : 'rgba(244,63,94,0.98)'; // brand or accent
-      // Much slower speed for magical shooting star effect
-      const base = 0.00008 + rand()*0.00012; // slower progress per ms
-      // Longer trail for shooting star effect (like wishing stars)
-      const trailLength = 0.25 + rand()*0.35; // longer comet tail
+      // Faster speed - like quick shooting stars crossing the sky
+      const base = 0.00025 + rand()*0.00035; // faster progress per ms
+      // Shorter trail - quick streak across the sky
+      const trailLength = 0.15 + rand()*0.20; // shorter, cleaner trail
       pulses.push({ e, t: rand()*0.95, dir, spd: base, color, trail: trailLength });
     }
 
@@ -302,9 +302,9 @@
         ctx.fill();
       }
       pulses = nextPulses;
-      // Keep a steady number of pulses (fewer for magical effect)
-      const minPulses = Math.round(edges.length * 0.12);
-      const maxPulses = Math.round(edges.length * 0.25);
+      // Keep a steady number of pulses (fewer to avoid crowding)
+      const minPulses = Math.round(edges.length * 0.06);
+      const maxPulses = Math.round(edges.length * 0.12);
       if (pulses.length < minPulses) {
         for (let i = pulses.length; i < minPulses; i++) spawnPulse();
       } else if (pulses.length > maxPulses) {
