@@ -256,6 +256,23 @@
         const n1 = nodes[e.a], n2 = nodes[e.b];
         const x = n1.x + e.ux * (e.len * p.t);
         const y = n1.y + e.uy * (e.len * p.t);
+        
+        // Calculate fade in/out for natural appearance and disappearance
+        const fadeInDist = 0.15;  // fade in during first 15% of journey
+        const fadeOutDist = 0.15; // fade out during last 15% of journey
+        let opacity = 1.0;
+        
+        if (p.t < fadeInDist) {
+          // Fade in smoothly at the start
+          opacity = p.t / fadeInDist;
+        } else if (p.t > (1 - fadeOutDist)) {
+          // Fade out smoothly at the end
+          opacity = (1 - p.t) / fadeOutDist;
+        }
+        
+        // Apply easing for even smoother fade (ease-in-out)
+        opacity = opacity * opacity * (3 - 2 * opacity);
+        
         // Trail (shooting star tail with gradient fade)
         const tail = e.len * p.trail;
         const tx = x - e.ux * tail * p.dir;
@@ -264,8 +281,8 @@
         // Create gradient along the trail for ethereal effect
         const trailGrad = ctx.createLinearGradient(tx, ty, x, y);
         trailGrad.addColorStop(0, 'rgba(0,0,0,0)'); // fade out at tail
-        trailGrad.addColorStop(0.3, p.color.replace(/[\d.]+\)$/g, '0.3)')); // soft middle
-        trailGrad.addColorStop(1, p.color); // bright at head
+        trailGrad.addColorStop(0.3, p.color.replace(/[\d.]+\)$/g, `${0.3 * opacity})`)); // soft middle with fade
+        trailGrad.addColorStop(1, p.color.replace(/[\d.]+\)$/g, `${0.95 * opacity})`)); // bright at head with fade
         ctx.strokeStyle = trailGrad;
         ctx.lineWidth = 2.5 * dpr;
         ctx.lineCap = 'round';
@@ -274,10 +291,10 @@
         ctx.lineTo(x, y);
         ctx.stroke();
         
-        // Larger, more magical head glow (like a wishing star)
+        // Larger, more magical head glow (like a wishing star) with fade
         const rg = ctx.createRadialGradient(x, y, 0, x, y, 12 * dpr);
-        rg.addColorStop(0, p.color);
-        rg.addColorStop(0.4, p.color.replace(/[\d.]+\)$/g, '0.5)'));
+        rg.addColorStop(0, p.color.replace(/[\d.]+\)$/g, `${0.95 * opacity})`));
+        rg.addColorStop(0.4, p.color.replace(/[\d.]+\)$/g, `${0.5 * opacity})`));
         rg.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = rg;
         ctx.beginPath();
