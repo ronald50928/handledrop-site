@@ -397,6 +397,69 @@ h3 { font-size: clamp(1.25rem, 3vw, 1.75rem); }
   text-align: center;
 }
 
+/* Coming Soon Banner - REMOVE WHEN APP LAUNCHES */
+.coming-soon-banner {
+  background: linear-gradient(135deg, rgba(14,165,233,.15) 0%, rgba(244,63,94,.15) 100%);
+  border-bottom: 1px solid rgba(14,165,233,.3);
+  padding: 1rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 90;
+}
+.coming-soon-banner .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: .95rem;
+}
+.banner-icon { font-size: 1.5rem; }
+.banner-cta {
+  background: var(--brand);
+  color: #000;
+  padding: .5rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none !important;
+  transition: transform .2s ease;
+}
+.banner-cta:hover { transform: scale(1.05); color: #000; }
+
+/* Demo Badge - REMOVE WHEN APP LAUNCHES */
+.demo-badge {
+  display: inline-block;
+  background: rgba(244,63,94,.2);
+  border: 1px solid rgba(244,63,94,.4);
+  color: #F43F5E;
+  padding: .25rem .75rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  margin-left: .5rem;
+  vertical-align: middle;
+}
+
+/* Disabled State for Pre-Launch */
+.disabled-for-launch {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+.disabled-for-launch::after {
+  content: 'Coming Soon';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(244,63,94,.9);
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: .875rem;
+}
+
 /* Accessibility */
 .skip-link { position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden; }
 .skip-link:focus { 

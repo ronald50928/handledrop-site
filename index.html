@@ -38,6 +38,17 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
+    <!-- ============================================ -->
+    <!-- COMING SOON BANNER - REMOVE WHEN APP LAUNCHES -->
+    <!-- ============================================ -->
+    <div class="coming-soon-banner">
+      <div class="wrap">
+        <span class="banner-icon">🚀</span>
+        <strong>Coming Soon!</strong> We're building the future of trading. Stay tuned for launch.
+      </div>
+    </div>
+    <!-- END COMING SOON BANNER -->
+
     <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
     <header class="site-header" role="banner">
@@ -57,7 +68,8 @@
           </ul>
         </nav>
         <div class="header-cta">
-          <a class="btn btn-primary cta-start" href="#signup">Start Trading</a>
+          <!-- TODO: Enable when app launches -->
+          <span class="btn btn-primary" style="opacity: 0.6; pointer-events: none;">Coming Soon</span>
         </div>
       </div>
     </header>
@@ -70,13 +82,15 @@
             <h1 class="display">Got Stuff You Don't Use? Trade It For Stuff You Want</h1>
             <p class="subhead">No cash needed. We handle the shipping. You get what you want.</p>
             
-            <div class="hero-search">
-              <input type="text" placeholder="What do you want to trade?" aria-label="Search for items to trade" class="search-input" />
-              <button class="btn btn-primary">Search</button>
+            <!-- TODO: Enable search when app launches -->
+            <div class="hero-search" style="opacity: 0.6; pointer-events: none; position: relative;">
+              <input type="text" placeholder="What do you want to trade?" aria-label="Search for items to trade" class="search-input" disabled />
+              <button class="btn btn-primary" disabled>Search</button>
+              <span class="demo-badge" style="position: absolute; top: -10px; right: -10px;">COMING SOON</span>
             </div>
             
             <div class="actions">
-              <a class="btn btn-secondary" href="#live-trades">See What Others Are Trading</a>
+              <a class="btn btn-secondary" href="#how-it-works">Learn More</a>
             </div>
           </div>
           
@@ -355,24 +369,18 @@
         </div>
       </section>
 
-      <!-- Signup CTA -->
-      <section id="signup" class="section signup-cta">
-        <div class="wrap">
-          <h2>Ready to Declutter and Get What You Want?</h2>
-          <p class="subhead">Join 50,000+ people who trade instead of sell</p>
+      <!-- Coming Soon CTA -->
+      <!-- TODO: Replace with actual signup when app launches -->
+      <section id="waitlist" class="section signup-cta">
+        <div class="wrap center">
+          <h2>Coming Soon</h2>
+          <p class="subhead">We're building the future of peer-to-peer trading</p>
           
-          <form class="signup-form" action="#" method="post">
-            <input type="email" placeholder="Enter your email" required aria-label="Email address" class="email-input" />
-            <button type="submit" class="btn btn-primary btn-large">Get Started</button>
-          </form>
-
-          <div class="signup-benefits">
-            <span>✓ Free to join</span>
-            <span>✓ No credit card required</span>
-            <span>✓ Cancel anytime</span>
+          <div style="margin: 2rem 0;">
+            <span class="btn btn-primary btn-large" style="opacity: 0.6; pointer-events: none;">App Launching Soon</span>
           </div>
 
-          <p class="tiny">Already trading? <a href="#">Log In</a></p>
+          <p class="tiny">Learn more: <a href="/how-it-works.html">How It Works</a> | <a href="/help.html">FAQ</a></p>
         </div>
       </section>
     </main>
