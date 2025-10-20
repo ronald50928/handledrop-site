@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How It Works — HandleDrop</title>
+    <meta name="description" content="Trading made simple. Learn how to snap a photo, get matched, and trade safely with HandleDrop." />
+    <meta name="theme-color" content="#0B0F14" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="canonical" href="https://handledrop.net/how-it-works.html" />
+    <link rel="stylesheet" href="/assets/css/styles-new.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+    <header class="site-header" role="banner">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="HandleDrop home">
+          <img src="/assets/img/handledrop-logo.svg" alt="HandleDrop logo" width="140" height="32" />
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
+          <ul id="nav-list" class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/how-it-works.html">How It Works</a></li>
+            <li><a href="/safety.html">Safety</a></li>
+            <li><a href="/shipping.html">Shipping</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/help.html">Help</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a class="btn btn-primary cta-start" href="/#signup">Start Trading</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="site-main" tabindex="-1">
+      <section class="hero section">
+        <div class="wrap center">
+          <h1 class="display">Trading Made Simple</h1>
+          <p class="subhead">Get what you want without spending cash. Here's how it works.</p>
+        </div>
+      </section>
+
+      <section class="section detailed-steps">
+        <div class="wrap">
+          <!-- Step 1 -->
+          <div class="step-detail">
+            <div class="step-visual">
+              <svg viewBox="0 0 300 300" class="step-illustration" aria-hidden="true">
+                <circle cx="150" cy="150" r="120" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="3"/>
+                <rect x="80" y="80" width="140" height="180" rx="10" fill="rgba(18,23,34,0.9)" stroke="#0EA5E9" stroke-width="2"/>
+                <circle cx="150" cy="100" r="8" fill="#0EA5E9"/>
+                <rect x="100" y="120" width="100" height="80" rx="5" fill="rgba(14,165,233,0.3)"/>
+                <text x="150" y="160" text-anchor="middle" fill="#fff" font-size="40">📸</text>
+                <rect x="100" y="210" width="100" height="30" rx="5" fill="#0EA5E9"/>
+              </svg>
+            </div>
+            <div class="step-content">
+              <div class="step-number">Step 1</div>
+              <h2>Snap a Photo - Takes 30 Seconds</h2>
+              <p class="lead">Got something you don't use? Take a quick photo with your phone.</p>
+              
+              <div class="feature-list">
+                <div class="feature-item">
+                  <span class="feature-icon">🤖</span>
+                  <div>
+                    <strong>AI helps you list instantly</strong>
+                    <p>Our AI recognizes your item and suggests category, condition, and value range</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">✏️</span>
+                  <div>
+                    <strong>Add details (optional)</strong>
+                    <p>Want to add more info? You can, but you don't have to</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">💡</span>
+                  <div>
+                    <strong>Smart value bands</strong>
+                    <p>We suggest fair value ranges based on millions of past trades</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pro-tip">
+                <strong>Pro tip:</strong> Good lighting and multiple angles help you get better matches faster.
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-detail reverse">
+            <div class="step-visual">
+              <svg viewBox="0 0 300 300" class="step-illustration" aria-hidden="true">
+                <circle cx="150" cy="150" r="120" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="3"/>
+                
+                <!-- Left person -->
+                <circle cx="80" cy="120" r="35" fill="rgba(14,165,233,0.3)" stroke="#0EA5E9" stroke-width="2"/>
+                <text x="80" y="130" text-anchor="middle" fill="#fff" font-size="30">👤</text>
+                
+                <!-- Right person -->
+                <circle cx="220" cy="120" r="35" fill="rgba(14,165,233,0.3)" stroke="#0EA5E9" stroke-width="2"/>
+                <text x="220" y="130" text-anchor="middle" fill="#fff" font-size="30">👤</text>
+                
+                <!-- Connection -->
+                <path d="M 115 120 L 185 120" stroke="#0EA5E9" stroke-width="3" stroke-dasharray="5,5">
+                  <animate attributeName="stroke-dashoffset" from="0" to="10" dur="1s" repeatCount="indefinite"/>
+                </path>
+                
+                <!-- Items -->
+                <text x="80" y="190" text-anchor="middle" fill="#fff" font-size="35">🎮</text>
+                <text x="220" y="190" text-anchor="middle" fill="#fff" font-size="35">👕</text>
+                
+                <!-- Match badge -->
+                <rect x="125" y="105" width="50" height="30" rx="15" fill="#0EA5E9"/>
+                <text x="150" y="125" text-anchor="middle" fill="#000" font-size="14" font-weight="bold">MATCH</text>
+              </svg>
+            </div>
+            <div class="step-content">
+              <div class="step-number">Step 2</div>
+              <h2>Get Matched with Perfect Trades</h2>
+              <p class="lead">Our system finds people who want what you have and have what you want.</p>
+              
+              <div class="feature-list">
+                <div class="feature-item">
+                  <span class="feature-icon">🎯</span>
+                  <div>
+                    <strong>Smart matching algorithm</strong>
+                    <p>We connect you with traders nearby who have compatible value bands</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">🔔</span>
+                  <div>
+                    <strong>Get instant notifications</strong>
+                    <p>"Mike wants to trade his PS5 for your vintage jacket!"</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">💬</span>
+                  <div>
+                    <strong>Chat before you commit</strong>
+                    <p>Ask questions, share more photos, make sure it's the right trade</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="example-notification">
+                <strong>Example Match:</strong>
+                <div class="notification-box">
+                  <span class="notif-icon">🎮</span>
+                  <div class="notif-content">
+                    <strong>New Trade Request!</strong>
+                    <p>Alex wants to trade a PlayStation 5 (like new) for your vintage leather jacket</p>
+                    <div class="notif-actions">
+                      <button class="btn btn-primary">View Trade</button>
+                      <button class="btn btn-secondary">Maybe Later</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-detail">
+            <div class="step-visual">
+              <svg viewBox="0 0 300 300" class="step-illustration" aria-hidden="true">
+                <circle cx="150" cy="150" r="120" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="3"/>
+                
+                <!-- Checkmarks -->
+                <circle cx="100" cy="100" r="30" fill="rgba(14,165,233,0.3)" stroke="#0EA5E9" stroke-width="2"/>
+                <path d="M 85 100 L 95 110 L 115 85" stroke="#0EA5E9" stroke-width="3" fill="none" stroke-linecap="round"/>
+                
+                <circle cx="200" cy="100" r="30" fill="rgba(14,165,233,0.3)" stroke="#0EA5E9" stroke-width="2"/>
+                <path d="M 185 100 L 195 110 L 215 85" stroke="#0EA5E9" stroke-width="3" fill="none" stroke-linecap="round"/>
+                
+                <!-- Lock -->
+                <rect x="130" y="180" width="40" height="40" rx="5" fill="rgba(14,165,233,0.3)" stroke="#0EA5E9" stroke-width="2"/>
+                <rect x="140" y="165" width="20" height="20" rx="10" fill="none" stroke="#0EA5E9" stroke-width="2"/>
+                <text x="150" y="210" text-anchor="middle" fill="#fff" font-size="20">🔒</text>
+              </svg>
+            </div>
+            <div class="step-content">
+              <div class="step-number">Step 3</div>
+              <h2>Both Sides Approve - Full Control</h2>
+              <p class="lead">Nothing happens until BOTH people say yes. Your stuff stays yours until you're ready.</p>
+              
+              <div class="feature-list">
+                <div class="feature-item">
+                  <span class="feature-icon">✅</span>
+                  <div>
+                    <strong>Review everything first</strong>
+                    <p>See photos, condition, ratings, trade history</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">🛡️</span>
+                  <div>
+                    <strong>We hold items in escrow</strong>
+                    <p>Both items shipped before anyone gets anything</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">↩️</span>
+                  <div>
+                    <strong>Change your mind? No problem</strong>
+                    <p>Cancel anytime before shipping. No fees, no penalties</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-detail reverse">
+            <div class="step-visual">
+              <svg viewBox="0 0 300 300" class="step-illustration" aria-hidden="true">
+                <circle cx="150" cy="150" r="120" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="3"/>
+                
+                <!-- Package -->
+                <rect x="100" y="100" width="100" height="80" rx="5" fill="rgba(14,165,233,0.3)" stroke="#0EA5E9" stroke-width="2"/>
+                <path d="M 100 140 L 150 110 L 200 140" stroke="#0EA5E9" stroke-width="2" fill="none"/>
+                <path d="M 150 110 L 150 180" stroke="#0EA5E9" stroke-width="2"/>
+                
+                <!-- Label -->
+                <rect x="120" y="120" width="60" height="30" rx="3" fill="#fff"/>
+                <rect x="125" y="125" width="50" height="5" fill="#000"/>
+                <rect x="125" y="135" width="40" height="5" fill="#000"/>
+                <rect x="125" y="145" width="35" height="5" fill="#000"/>
+                
+                <!-- Location pin -->
+                <text x="150" y="220" text-anchor="middle" fill="#0EA5E9" font-size="30">📍</text>
+              </svg>
+            </div>
+            <div class="step-content">
+              <div class="step-number">Step 4</div>
+              <h2>Print Label & Ship - Address Stays Private</h2>
+              <p class="lead">We generate prepaid labels. Your real address never shows.</p>
+              
+              <div class="feature-list">
+                <div class="feature-item">
+                  <span class="feature-icon">🏠</span>
+                  <div>
+                    <strong>Your address stays hidden</strong>
+                    <p>We use secure proxy addresses for maximum privacy</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">🖨️</span>
+                  <div>
+                    <strong>Print at home or drop-off location</strong>
+                    <p>No printer? Show the QR code at any UPS, FedEx, or USPS</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">📦</span>
+                  <div>
+                    <strong>Box it up and drop off</strong>
+                    <p>30,000+ locations nationwide. Amazon Locker works too!</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cost-note">
+                <strong>Shipping costs:</strong>
+                <ul>
+                  <li><strong>Free tier:</strong> Discounted labels (~$6-8 vs retail $9-12)</li>
+                  <li><strong>Premium ($5.99/mo):</strong> 1 FREE label/month + 30% off additional</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="step-detail">
+            <div class="step-visual">
+              <svg viewBox="0 0 300 300" class="step-illustration" aria-hidden="true">
+                <circle cx="150" cy="150" r="120" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="3"/>
+                
+                <!-- Truck -->
+                <rect x="80" y="120" width="70" height="40" rx="5" fill="rgba(14,165,233,0.3)" stroke="#0EA5E9" stroke-width="2"/>
+                <circle cx="100" cy="165" r="12" fill="#0EA5E9"/>
+                <circle cx="135" cy="165" r="12" fill="#0EA5E9"/>
+                <rect x="150" y="130" width="50" height="30" rx="5" fill="rgba(14,165,233,0.3)" stroke="#0EA5E9" stroke-width="2"/>
+                
+                <!-- Tracking dots -->
+                <circle cx="90" cy="200" r="5" fill="#0EA5E9"/>
+                <circle cx="110" cy="200" r="5" fill="#0EA5E9"/>
+                <circle cx="130" cy="200" r="5" fill="#0EA5E9" opacity="0.5"/>
+                <circle cx="150" cy="200" r="5" fill="#fff" opacity="0.3"/>
+              </svg>
+            </div>
+            <div class="step-content">
+              <div class="step-number">Step 5</div>
+              <h2>Track Until Verified - Full Transparency</h2>
+              <p class="lead">See exactly where your trade is at every step.</p>
+              
+              <div class="feature-list">
+                <div class="feature-item">
+                  <span class="feature-icon">📲</span>
+                  <div>
+                    <strong>Real-time tracking</strong>
+                    <p>Get updates when items are shipped, in transit, and delivered</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">✔️</span>
+                  <div>
+                    <strong>Both confirm receipt</strong>
+                    <p>Trade completes only when both people confirm they got their items</p>
+                  </div>
+                </div>
+                <div class="feature-item">
+                  <span class="feature-icon">⭐</span>
+                  <div>
+                    <strong>Rate your experience</strong>
+                    <p>Build your reputation. Trusted traders get better matches</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tracking-example">
+                <strong>Live Tracking Example:</strong>
+                <div class="tracking-timeline">
+                  <div class="timeline-item complete">
+                    <span class="timeline-dot"></span>
+                    <div>
+                      <strong>Label Created</strong>
+                      <span class="timeline-time">Oct 18, 10:00 AM</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item complete">
+                    <span class="timeline-dot"></span>
+                    <div>
+                      <strong>Picked Up</strong>
+                      <span class="timeline-time">Oct 18, 2:00 PM</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item active">
+                    <span class="timeline-dot"></span>
+                    <div>
+                      <strong>In Transit</strong>
+                      <span class="timeline-time">Expected Oct 20</span>
+                    </div>
+                  </div>
+                  <div class="timeline-item">
+                    <span class="timeline-dot"></span>
+                    <div>
+                      <strong>Delivered</strong>
+                      <span class="timeline-time">Pending</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Final Step -->
+          <div class="step-detail celebrate">
+            <div class="step-visual">
+              <svg viewBox="0 0 300 300" class="step-illustration" aria-hidden="true">
+                <circle cx="150" cy="150" r="120" fill="rgba(14,165,233,0.15)" stroke="#0EA5E9" stroke-width="3"/>
+                <text x="150" y="170" text-anchor="middle" fill="#fff" font-size="80">🎉</text>
+              </svg>
+            </div>
+            <div class="step-content">
+              <div class="step-number">Done!</div>
+              <h2>Get Your New Stuff!</h2>
+              <p class="lead">Trade complete. No money spent. Everyone wins.</p>
+              
+              <div class="success-stats">
+                <div class="success-stat">
+                  <span class="stat-icon">💚</span>
+                  <strong>Items kept out of landfills</strong>
+                </div>
+                <div class="success-stat">
+                  <span class="stat-icon">💰</span>
+                  <strong>Money saved on both sides</strong>
+                </div>
+                <div class="success-stat">
+                  <span class="stat-icon">🌍</span>
+                  <strong>More sustainable planet</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="section faq-section">
+        <div class="wrap">
+          <h2>Common Questions</h2>
+          
+          <div class="faq-grid">
+            <div class="faq-item">
+              <h3>What if I don't like what I receive?</h3>
+              <p>Both parties confirm the trade before it's finalized. If something isn't as described, you can dispute within 48 hours. We'll help resolve it or reverse the trade.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>How do you determine fair value?</h3>
+              <p>Our AI analyzes millions of completed trades, current market prices, condition, and demand. You always see suggested value ranges before committing.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>What can't I trade?</h3>
+              <p>No weapons, hazardous materials, living things, or illegal items. We also restrict items that require special licensing (alcohol, tobacco, regulated medications).</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>Is my address really private?</h3>
+              <p>Yes! We use proxy addresses. The other person never sees your real address, and you never see theirs. Maximum privacy.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>What if the other person backs out?</h3>
+              <p>No problem. Your item ships back to you at no cost if someone cancels after shipping has started.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>How long does a typical trade take?</h3>
+              <p>Most trades complete in 5-7 days from match to delivery. Fast local trades can be done in 2-3 days.</p>
+            </div>
+          </div>
+
+          <div class="center" style="margin-top:3rem;">
+            <p class="subhead">Still have questions?</p>
+            <a class="btn btn-secondary" href="/help.html">Visit Help Center</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section cta-section">
+        <div class="wrap center">
+          <h2>Ready to Start Trading?</h2>
+          <p class="subhead">Join 50,000+ people decluttering the smart way</p>
+          <a class="btn btn-primary btn-large" href="/#signup">Get Started Free</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <strong>HandleDrop</strong>
+            <p>Trade stuff you don't use for stuff you want.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="/how-it-works.html">How It Works</a></li>
+              <li><a href="/safety.html">Safety</a></li>
+              <li><a href="/shipping.html">Shipping</a></li>
+              <li><a href="/pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/about.html">About</a></li>
+              <li><a href="/community.html">Community</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="/help.html">Help Center</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Privacy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Download</h4>
+            <a href="#" class="app-badge">App Store</a>
+            <a href="#" class="app-badge">Google Play</a>
+          </div>
+        </div>
+      </div>
+      <p class="tiny center">© <span id="year"></span> HandleDrop</p>
+    </footer>
+
+    <script src="/assets/js/audio.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>
+

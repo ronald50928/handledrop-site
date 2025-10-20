@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shipping — Drop Off Anywhere | HandleDrop</title>
+    <meta name="description" content="Ship from 30,000+ locations nationwide. UPS, FedEx, USPS, Amazon Locker. Join the #KeepTheBox campaign and save money on every trade." />
+    <meta name="theme-color" content="#0B0F14" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="canonical" href="https://handledrop.net/shipping.html" />
+    <link rel="stylesheet" href="/assets/css/styles-new.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+    <header class="site-header" role="banner">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="HandleDrop home">
+          <img src="/assets/img/handledrop-logo.svg" alt="HandleDrop logo" width="140" height="32" />
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list">Menu</button>
+          <ul id="nav-list" class="nav-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/how-it-works.html">How It Works</a></li>
+            <li><a href="/safety.html">Safety</a></li>
+            <li><a href="/shipping.html">Shipping</a></li>
+            <li><a href="/pricing.html">Pricing</a></li>
+            <li><a href="/help.html">Help</a></li>
+          </ul>
+        </nav>
+        <div class="header-cta">
+          <a class="btn btn-primary cta-start" href="/#signup">Start Trading</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="site-main" tabindex="-1">
+      <section class="hero section">
+        <div class="wrap center">
+          <h1 class="display">Ship From Anywhere — 30,000+ Drop-Off Locations</h1>
+          <p class="subhead">No printer? No problem. Drop off at any UPS, FedEx, USPS, or Staples near you.</p>
+        </div>
+      </section>
+
+      <!-- Location Finder -->
+      <section class="section location-finder">
+        <div class="wrap">
+          <div class="finder-box">
+            <h2>Find Your Nearest Drop-Off Location</h2>
+            <form class="location-search" action="#" method="get">
+              <input type="text" placeholder="Enter your ZIP code" aria-label="ZIP code" class="search-input" id="zip-input" />
+              <button type="submit" class="btn btn-primary">Find Locations</button>
+            </form>
+            
+            <div class="location-results" id="location-results" style="display:none;">
+              <h3>Locations near you:</h3>
+              <div class="location-list">
+                <!-- Results will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Drop-Off Partners -->
+      <section class="section partners">
+        <div class="wrap">
+          <h2>Drop Off at 30,000+ Locations Nationwide</h2>
+          
+          <div class="partner-grid">
+            <div class="partner-card">
+              <div class="partner-logo">
+                <svg viewBox="0 0 100 100" class="partner-icon" aria-hidden="true">
+                  <rect x="10" y="30" width="80" height="40" rx="5" fill="rgba(101,67,33,0.3)" stroke="#654321" stroke-width="2"/>
+                  <text x="50" y="55" text-anchor="middle" fill="#654321" font-size="20" font-weight="bold">UPS</text>
+                </svg>
+              </div>
+              <h3>UPS Stores & Drop Boxes</h3>
+              <p class="partner-count">5,000+ locations</p>
+              <ul class="partner-features">
+                <li>Most locations open 7 days/week</li>
+                <li>No printer needed - show QR code</li>
+                <li>Free packaging materials available</li>
+                <li>Drop box available 24/7 at some locations</li>
+              </ul>
+            </div>
+
+            <div class="partner-card">
+              <div class="partner-logo">
+                <svg viewBox="0 0 100 100" class="partner-icon" aria-hidden="true">
+                  <rect x="10" y="30" width="80" height="40" rx="5" fill="rgba(79,38,131,0.3)" stroke="#4F2683" stroke-width="2"/>
+                  <text x="50" y="55" text-anchor="middle" fill="#4F2683" font-size="18" font-weight="bold">FedEx</text>
+                </svg>
+              </div>
+              <h3>FedEx Office & Drop Boxes</h3>
+              <p class="partner-count">2,000+ locations</p>
+              <ul class="partner-features">
+                <li>Extended hours at many locations</li>
+                <li>Print labels on-site if needed</li>
+                <li>Professional packing services</li>
+                <li>Drop boxes at most offices</li>
+              </ul>
+            </div>
+
+            <div class="partner-card">
+              <div class="partner-logo">
+                <svg viewBox="0 0 100 100" class="partner-icon" aria-hidden="true">
+                  <rect x="10" y="30" width="80" height="40" rx="5" fill="rgba(0,51,153,0.3)" stroke="#003399" stroke-width="2"/>
+                  <text x="50" y="55" text-anchor="middle" fill="#003399" font-size="18" font-weight="bold">USPS</text>
+                </svg>
+              </div>
+              <h3>USPS Post Offices</h3>
+              <p class="partner-count">31,000+ locations</p>
+              <ul class="partner-features">
+                <li>Most convenient - everywhere!</li>
+                <li>Often lowest cost option</li>
+                <li>Schedule free pickup from home</li>
+                <li>Blue collection boxes nationwide</li>
+              </ul>
+            </div>
+
+            <div class="partner-card">
+              <div class="partner-logo">
+                <svg viewBox="0 0 100 100" class="partner-icon" aria-hidden="true">
+                  <rect x="10" y="30" width="80" height="40" rx="5" fill="rgba(204,0,0,0.3)" stroke="#CC0000" stroke-width="2"/>
+                  <text x="50" y="55" text-anchor="middle" fill="#CC0000" font-size="16" font-weight="bold">Staples</text>
+                </svg>
+              </div>
+              <h3>Staples (UPS Services)</h3>
+              <p class="partner-count">1,000+ locations</p>
+              <ul class="partner-features">
+                <li>One-stop shop for packing supplies</li>
+                <li>UPS drop-off inside store</li>
+                <li>Buy boxes and ship same visit</li>
+                <li>Rewards program for frequent shippers</li>
+              </ul>
+            </div>
+
+            <div class="partner-card highlight">
+              <div class="partner-logo">
+                <svg viewBox="0 0 100 100" class="partner-icon" aria-hidden="true">
+                  <rect x="20" y="35" width="60" height="30" rx="3" fill="rgba(255,153,0,0.3)" stroke="#FF9900" stroke-width="2"/>
+                  <circle cx="35" cy="50" r="3" fill="#FF9900"/>
+                  <circle cx="50" cy="50" r="3" fill="#FF9900"/>
+                  <circle cx="65" cy="50" r="3" fill="#FF9900"/>
+                  <path d="M 30 40 Q 50 30 70 40" stroke="#FF9900" stroke-width="2" fill="none"/>
+                </svg>
+              </div>
+              <h3>Amazon Lockers</h3>
+              <p class="partner-count">2,000+ locations</p>
+              <ul class="partner-features">
+                <li>🌟 Ultimate privacy - no human interaction</li>
+                <li>24/7 access at most locations</li>
+                <li>Inside grocery stores, malls, apartments</li>
+                <li>Perfect for anonymous trades</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Keep The Box Campaign -->
+      <section class="section keep-the-box-campaign">
+        <div class="wrap">
+          <div class="campaign-hero">
+            <div class="campaign-visual">
+              <svg viewBox="0 0 300 300" class="campaign-illustration" aria-hidden="true">
+                <rect x="75" y="100" width="150" height="120" rx="5" fill="rgba(101,67,33,0.2)" stroke="#654321" stroke-width="3"/>
+                <path d="M 75 160 L 150 130 L 225 160" stroke="#654321" stroke-width="3" fill="none"/>
+                <path d="M 150 130 L 150 220" stroke="#654321" stroke-width="3"/>
+                <circle cx="150" cy="50" r="35" fill="rgba(46,204,113,0.3)" stroke="#2ECC71" stroke-width="3"/>
+                <path d="M 135 50 L 145 60 L 165 40" stroke="#2ECC71" stroke-width="4" fill="none" stroke-linecap="round"/>
+                <text x="150" y="270" text-anchor="middle" fill="#2ECC71" font-size="24" font-weight="bold">♻️</text>
+              </svg>
+            </div>
+            <div class="campaign-content">
+              <h2>🎁 Keep The Box Campaign</h2>
+              <p class="campaign-tagline">"That Amazon box from yesterday? Perfect for today's trade!"</p>
+              
+              <div class="campaign-stats">
+                <div class="campaign-stat">
+                  <span class="stat-number">2.4M</span>
+                  <span class="stat-label">Boxes reused</span>
+                </div>
+                <div class="campaign-stat">
+                  <span class="stat-number">$8.2M</span>
+                  <span class="stat-label">Saved on packaging</span>
+                </div>
+                <div class="campaign-stat">
+                  <span class="stat-number">1,200</span>
+                  <span class="stat-label">Tons of cardboard saved</span>
+                </div>
+              </div>
+
+              <div class="campaign-benefits">
+                <h3>Why Reuse Boxes?</h3>
+                <ul class="benefit-list">
+                  <li>
+                    <span class="benefit-icon">💰</span>
+                    <div>
+                      <strong>Save $3-8 per trade</strong>
+                      <p>Why buy new boxes when you already have them?</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="benefit-icon">🌍</span>
+                    <div>
+                      <strong>Better for the planet</strong>
+                      <p>Every reused box = fewer trees cut, less energy used</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="benefit-icon">⚡</span>
+                    <div>
+                      <strong>Ship faster</strong>
+                      <p>Box already at home? Pack and drop off same day</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="campaign-cta">
+                <p><strong>Join the movement!</strong> Share your reused boxes on social media with <strong>#KeepTheBox</strong></p>
+                <div class="social-buttons">
+                  <a href="#" class="btn btn-secondary">Share on Twitter</a>
+                  <a href="#" class="btn btn-secondary">Share on Instagram</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shipping Costs -->
+      <section class="section shipping-costs">
+        <div class="wrap">
+          <h2>How Much Does Shipping Cost?</h2>
+          <p class="subhead center">We negotiate discounted rates. You save money every time.</p>
+          
+          <div class="pricing-tiers">
+            <div class="tier-card">
+              <h3>Free Tier</h3>
+              <div class="tier-pricing">
+                <span class="tier-price">$0/month</span>
+              </div>
+              <ul class="tier-features">
+                <li><strong>Discounted label prices</strong></li>
+                <li>Small package (1-3 lbs): ~$6-8 <span class="tiny">(retail: $9-12)</span></li>
+                <li>Medium package (4-10 lbs): ~$10-14 <span class="tiny">(retail: $14-18)</span></li>
+                <li>Large package (11-20 lbs): ~$16-22 <span class="tiny">(retail: $22-30)</span></li>
+                <li>Access to all 30,000+ drop-off locations</li>
+                <li>2 active trades at a time</li>
+              </ul>
+              <a href="/#signup" class="btn btn-secondary">Get Started Free</a>
+            </div>
+
+            <div class="tier-card highlight">
+              <div class="tier-badge">Most Popular</div>
+              <h3>Premium</h3>
+              <div class="tier-pricing">
+                <span class="tier-price">$5.99/month</span>
+              </div>
+              <ul class="tier-features">
+                <li><strong>1 FREE label per month</strong> <span class="tiny">(~$8 value)</span></li>
+                <li>Additional labels 30% off:</li>
+                <li>Small package: ~$5-6 <span class="tiny">(retail: $9-12)</span></li>
+                <li>Medium package: ~$8-10 <span class="tiny">(retail: $14-18)</span></li>
+                <li>Large package: ~$12-16 <span class="tiny">(retail: $22-30)</span></li>
+                <li>Unlimited active trades</li>
+                <li>Priority customer support</li>
+                <li>Advanced packaging recommendations</li>
+              </ul>
+              <a href="/pricing.html" class="btn btn-primary">Go Premium</a>
+            </div>
+          </div>
+
+          <div class="calculator-section">
+            <h3>Calculate Your Savings</h3>
+            <div class="shipping-calculator">
+              <div class="calculator-inputs">
+                <label for="package-size">Package Size:</label>
+                <select id="package-size" class="calc-input">
+                  <option value="small">Small (1-3 lbs)</option>
+                  <option value="medium" selected>Medium (4-10 lbs)</option>
+                  <option value="large">Large (11-20 lbs)</option>
+                </select>
+
+                <label for="trades-per-month">Trades per Month:</label>
+                <input type="number" id="trades-per-month" class="calc-input" value="3" min="1" max="20" />
+
+                <label for="tier-select">Membership:</label>
+                <select id="tier-select" class="calc-input">
+                  <option value="free">Free</option>
+                  <option value="premium">Premium ($5.99/mo)</option>
+                </select>
+              </div>
+
+              <div class="calculator-results">
+                <div class="calc-result">
+                  <span class="result-label">Your Monthly Cost:</span>
+                  <span class="result-value" id="calc-cost">$36.00</span>
+                </div>
+                <div class="calc-result">
+                  <span class="result-label">Retail Cost:</span>
+                  <span class="result-value retail" id="calc-retail">$48.00</span>
+                </div>
+                <div class="calc-result savings">
+                  <span class="result-label">You Save:</span>
+                  <span class="result-value" id="calc-savings">$12.00/month</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Packaging Tips -->
+      <section class="section packaging-tips">
+        <div class="wrap">
+          <h2>Packing Tips for Safe Delivery</h2>
+          
+          <div class="tips-grid">
+            <div class="tip-card">
+              <div class="tip-number">1</div>
+              <h3>Choose the Right Box</h3>
+              <p>Box should be slightly larger than item. Fill empty space with padding. Reused Amazon boxes work great!</p>
+            </div>
+
+            <div class="tip-card">
+              <div class="tip-number">2</div>
+              <h3>Wrap Fragile Items</h3>
+              <p>Bubble wrap for fragile items. Newspaper, old clothes, or air pillows for padding. Double-box very fragile items.</p>
+            </div>
+
+            <div class="tip-card">
+              <div class="tip-number">3</div>
+              <h3>Seal It Securely</h3>
+              <p>Use strong packing tape. Tape all seams and edges. The "H" pattern is strongest: across top, bottom, and down the middle.</p>
+            </div>
+
+            <div class="tip-card">
+              <div class="tip-number">4</div>
+              <h3>Label Clearly</h3>
+              <p>We provide the shipping label - just print and stick it on. Cover any old labels or barcodes. One label per package.</p>
+            </div>
+
+            <div class="tip-card">
+              <div class="tip-number">5</div>
+              <h3>Take Photos</h3>
+              <p>Before sealing, take photos of the packed item. This protects both you and your trade partner if issues arise.</p>
+            </div>
+
+            <div class="tip-card">
+              <div class="tip-number">6</div>
+              <h3>Track Your Package</h3>
+              <p>We email you tracking info automatically. Both parties can see real-time updates in the app.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section faq-section">
+        <div class="wrap">
+          <h2>Shipping FAQs</h2>
+          
+          <div class="faq-grid">
+            <div class="faq-item">
+              <h3>Do I need a printer?</h3>
+              <p>Nope! Most UPS and FedEx locations can print your label from a QR code. Just show your phone. USPS also accepts QR codes at most locations.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>What if I don't have a box?</h3>
+              <p>UPS Stores and FedEx Office sell boxes (usually $2-5). Staples has a huge selection. Or grab free boxes from grocery stores, liquor stores, or friends!</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>Can I schedule a pickup?</h3>
+              <p>Yes! USPS offers free home pickup when you schedule online. UPS and FedEx charge $4-6 for home pickup. Premium members get pickup discounts.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>How long does shipping take?</h3>
+              <p>Typically 3-5 business days for ground shipping. Express options available for faster delivery (2-day or overnight) at additional cost.</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>Is shipping insured?</h3>
+              <p>Yes! All shipments include up to $100 insurance automatically. You can add more insurance for high-value items (usually $1 per $100 of value).</p>
+            </div>
+
+            <div class="faq-item">
+              <h3>What if my package is lost or damaged?</h3>
+              <p>We'll file a claim with the carrier. If approved, you get the insured value. If denied, we reverse the trade and return items to original owners.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section cta-section">
+        <div class="wrap center">
+          <h2>Ready to Start Trading?</h2>
+          <p class="subhead">Ship from anywhere, anytime. It's that easy.</p>
+          <a class="btn btn-primary btn-large" href="/#signup">Get Started Free</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <strong>HandleDrop</strong>
+            <p>Trade stuff you don't use for stuff you want.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="/how-it-works.html">How It Works</a></li>
+              <li><a href="/safety.html">Safety</a></li>
+              <li><a href="/shipping.html">Shipping</a></li>
+              <li><a href="/pricing.html">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/about.html">About</a></li>
+              <li><a href="/community.html">Community</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Careers</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="/help.html">Help Center</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Privacy</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Download</h4>
+            <a href="#" class="app-badge">App Store</a>
+            <a href="#" class="app-badge">Google Play</a>
+          </div>
+        </div>
+      </div>
+      <p class="tiny center">© <span id="year"></span> HandleDrop</p>
+    </footer>
+
+    <script src="/assets/js/audio.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/calculator.js" defer></script>
+  </body>
+</html>
+
